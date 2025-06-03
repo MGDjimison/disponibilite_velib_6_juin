@@ -1,4 +1,7 @@
-import pandas as pd
+from dataframe import get_velib_dispo, get_velib_dispo_types, get_velib_dispo_columns
 
-velib_dispo_df = pd.read_csv("data/velib-disponibilite-en-temps-reel-paris-data.csv", delimiter=";")
-print(velib_dispo_df.head())
+velib_dispo_df = get_velib_dispo()
+
+print(get_velib_dispo_types())
+
+print(get_velib_dispo_columns())
