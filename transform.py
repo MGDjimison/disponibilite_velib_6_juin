@@ -3,7 +3,7 @@ import pandas
 from dataframe import get_velib_data
 
 
-def transform():
+def get_transformed_data():
     df = get_velib_data()
     # convert column names to snake case
     df.columns = df.columns.str.lower().str.replace(" ", "_")
@@ -19,7 +19,7 @@ def transform():
 
     # convert string to datetime
     df["actualisation_de_la_donnée"] = pandas.to_datetime(df["actualisation_de_la_donnée"])
-    df.drop("station_opening_hours", axis=1)
+    df = df.drop("station_opening_hours", axis=1)
 
     return df
 
