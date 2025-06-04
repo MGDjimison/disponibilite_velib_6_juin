@@ -19,6 +19,7 @@ def transform():
 
     # convert string to datetime
     df["actualisation_de_la_donnée"] = pandas.to_datetime(df["actualisation_de_la_donnée"])
+    df.drop("station_opening_hours", axis=1)
 
     return df
 
