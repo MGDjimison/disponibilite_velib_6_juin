@@ -17,5 +17,8 @@ def transform():
     df["retour_vélib_possible"] = df["retour_vélib_possible"].map(names)
     df["borne_de_paiement_disponible"] = df["borne_de_paiement_disponible"].map(names)
 
+    # convert string to datetime
+    df["actualisation_de_la_donnée"] = pandas.to_datetime(df["actualisation_de_la_donnée"])
+
     return df
 
