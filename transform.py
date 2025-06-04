@@ -8,7 +8,7 @@ def transform():
     # convert column names to snake case
     df.columns = df.columns.str.lower().str.replace(" ", "_")
 
-    # convert "station_en_fonctionnement" to boolean
+    # convert human-readable columns to boolean
     names = {
         "OUI": True,
         "NON": False
