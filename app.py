@@ -1,7 +1,5 @@
-from dataframe import get_velib_dispo, get_velib_dispo_types, get_velib_dispo_columns
+from transform import *
 
-velib_dispo_df = get_velib_dispo()
-
-print(get_velib_dispo_types())
-
-print(get_velib_dispo_columns())
+velib_df = transform()
+# print(velib_df.head())
+print(velib_df.columns)
