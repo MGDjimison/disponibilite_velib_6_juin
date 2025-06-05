@@ -23,3 +23,11 @@ def get_transformed_data():
 
     return df
 
+
+def get_velib_in_paris():
+    df = get_transformed_data()
+    paris_velib_df = df[
+        (df["nom_communes_équipées"] == "Paris") &
+        (df["station_en_fonctionnement"] == True)
+    ]
+    return paris_velib_df
