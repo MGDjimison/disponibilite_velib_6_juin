@@ -20,6 +20,7 @@ def get_transformed_data():
     # convert string to datetime
     df["actualisation_de_la_donnée"] = pandas.to_datetime(df["actualisation_de_la_donnée"])
     df = df.drop("station_opening_hours", axis=1)
+    df = df.rename(columns={"nom_communes_équipées": "commune", "code_insee_communes_équipées": "code_postal"})
 
     return df
 
@@ -27,7 +28,7 @@ def get_transformed_data():
 def get_velib_in_paris():
     df = get_transformed_data()
     paris_velib_df = df[
-        (df["nom_communes_équipées"] == "Paris") &
+        (df["commune"] == "Paris") &
         (df["station_en_fonctionnement"] == True)
     ]
     return paris_velib_df

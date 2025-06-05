@@ -4,7 +4,8 @@ velib_df = get_transformed_data()
 # print(velib_df.head())
 # print(velib_df.shape)
 
-velib_in_paris = get_velib_in_paris()
-print(velib_df.head())
-print(velib_in_paris.shape)
+# velib_in_paris = get_velib_in_paris()
+# print(velib_df["commune"].value_counts())
+# print(velib_in_paris.shape)
+print(velib_df[["code_postal", "commune"]])
 
