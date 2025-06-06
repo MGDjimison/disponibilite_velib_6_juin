@@ -19,7 +19,11 @@ def get_transformed_data():
 
     # convert string to datetime
     df["actualisation_de_la_donnée"] = pandas.to_datetime(df["actualisation_de_la_donnée"])
+
+    # remove useless column (full of nan)
     df = df.drop("station_opening_hours", axis=1)
+
+    # rename columns
     df = df.rename(columns={"nom_communes_équipées": "commune", "code_insee_communes_équipées": "code_postal"})
 
     return df
@@ -32,3 +36,22 @@ def get_velib_in_paris():
         (df["station_en_fonctionnement"] == True)
     ]
     return paris_velib_df
+
+
+def add_department():
+    df = get_transformed_data()
+    # convert "code_postal" to string and extract two first characters
+    df["departement"] = df["code_postal"].apply(lambda val: str(val)[:2])
+    department = {
+        "75": "Paris",
+        "77": "Seine-et-Marne",
+        "78": "Yvelines",
+        "91": "Essonne",
+        "92": "Hauts-de-Seine",
+        "93": "Seine-Saint-Denis",
+        "94": "Val-De-Marne",
+        "95": "Val-D'Oise"
+    }
+    # convert "code_postal" to its corresponding name
+    df["departement"] = df["departement"].map(department)
+    return df["departement"]
