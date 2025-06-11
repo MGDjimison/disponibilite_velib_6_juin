@@ -1,14 +1,10 @@
-from transform import get_transformed_data, get_velib_in_paris, add_department
+from transform import get_transformed_data, get_station_by_departement, get_station_by_commune
 
-velib_df = get_transformed_data()
-# print(velib_df.head())
-# print(velib_df.shape)
+transformed_velib_df = get_transformed_data()
 
-# velib_in_paris = get_velib_in_paris()
-# print(velib_in_paris["commune"].value_counts())
-# print(velib_in_paris.shape)
-# print(velib_in_paris["code_postal"].value_counts())
+station_by_departement = get_station_by_departement()
+print(station_by_departement)
 
-velib_df["departement"] = add_department()
-print(velib_df["departement"].value_counts())
+station_by_commune = get_station_by_commune()
+print(station_by_commune)
 

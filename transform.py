@@ -38,6 +38,19 @@ def get_velib_in_paris():
     return paris_velib_df
 
 
+def get_station_by_commune():
+    df = get_transformed_data()
+    station_by_commune_df = df["commune"].value_counts()
+    return station_by_commune_df
+
+
+def get_station_by_departement():
+    df = get_transformed_data()
+    df["departement"] = add_department()
+    station_by_departement_df = df["departement"].value_counts()
+    return station_by_departement_df
+
+
 def add_department():
     df = get_transformed_data()
     # convert "code_postal" to string and extract two first characters
