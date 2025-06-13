@@ -1,10 +1,9 @@
-from transform import get_transformed_data, get_station_by_departement, get_station_by_commune
+from transform import get_transformed_data, add_department, get_average_of_numerical_columns_by_departement
 
 transformed_velib_df = get_transformed_data()
+print("commune" in transformed_velib_df.columns)
+transformed_velib_df["departement"] = add_department()
 
-station_by_departement = get_station_by_departement()
-print(station_by_departement)
-
-station_by_commune = get_station_by_commune()
-print(station_by_commune)
+average_numerical_data_df_by_departement = get_average_of_numerical_columns_by_departement()
+print(average_numerical_data_df_by_departement)
 

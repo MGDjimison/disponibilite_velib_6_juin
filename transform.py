@@ -29,11 +29,35 @@ def get_transformed_data():
     return df
 
 
+def get_numerical_columns():
+    # except id and code_postal
+    transformed_velib_df = get_transformed_data()
+    df = transformed_velib_df.select_dtypes(include="int64")
+    final_df = df.drop(["identifiant_station", "code_postal"], axis=1)
+    return final_df
+
+
+def get_average_of_numerical_columns_by_departement():
+    transformed_velib_df = get_transformed_data()
+    transformed_velib_df["departement"] = add_department()
+    # get numerical columns dataframe
+    numerical_columns_df = get_numerical_columns()
+    # get names of numerical columns
+    numerical_columns = numerical_columns_df.columns
+
+    numerical_columns_df["departement"] = transformed_velib_df["departement"]
+    # print(numerical_columns_df)
+    data_groupby_departement_df = numerical_columns_df.groupby("departement")[numerical_columns].mean()
+    # round all columns with 1
+    data_groupby_departement_df = data_groupby_departement_df.round()
+    return data_groupby_departement_df
+
+
 def get_velib_in_paris():
     df = get_transformed_data()
     paris_velib_df = df[
         (df["commune"] == "Paris") &
-        (df["station_en_fonctionnement"] == True)
+        (df["station_en_fonctionnement"])
     ]
     return paris_velib_df
 
